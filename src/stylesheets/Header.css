@@ -1,0 +1,36 @@
+.app-header {
+  position: relative;
+}
+
+.logo,
+.burger-icon-button,
+.navigation-list {
+  position: absolute;
+  z-index: 1;
+  top: 0rem;
+  padding: 2.4rem;
+}
+
+.logo {
+  left: 0rem;
+}
+
+.burger-icon-button {
+  right: 0;
+  border: none;
+  background: transparent;
+}
+
+@media screen and (min-width: 768px) {
+  .logo,
+  .navigation-list {
+    padding: 2.4rem 8rem;
+  }
+
+  .navigation-list {
+    color: white;
+    right: 0;
+    display: flex;
+    gap: 2.4rem;
+  }
+}

@@ -1,0 +1,9 @@
+.action-button {
+  padding: 2rem 4rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: white;
+  background-color: hsl(176, 50%, 47%);
+  border: none;
+  border-radius: 3rem;
+}
