@@ -1,0 +1,26 @@
+.mobile-menu {
+  width: 90%;
+  background-color: white;
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  z-index: 3;
+  border-radius: 1rem;
+}
+
+.mobile-menu p {
+  color: black;
+  font-weight: 500;
+  font-size: 2.4rem;
+  padding: 2.4rem;
+}
+
+.menu-divider {
+  width: 100%;
+  height: 2px;
+  background-color: whitesmoke;
+  border-radius: 4rem;
+}

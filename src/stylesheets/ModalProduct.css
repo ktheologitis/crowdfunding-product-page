@@ -1,0 +1,125 @@
+.modal-product {
+  background-color: white;
+  width: 100%;
+  align-self: center;
+}
+
+.modal-product label {
+  display: flex;
+  align-items: center;
+}
+
+.radio-input {
+  display: none;
+}
+
+.round-radio {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid lightgray;
+  border-radius: 50%;
+  margin-right: 2rem;
+  padding: 4px;
+  position: relative;
+}
+
+.round-radio::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  background-color: hsl(176, 50%, 47%);
+  border-radius: 50%;
+  display: block;
+  transform: scale(0);
+  transition: transform 0.15s;
+}
+
+.radio-input:checked + .round-radio::after {
+  transform: scale(1);
+}
+
+.details .main {
+  font-size: 1.6rem;
+  color: black;
+  font-weight: 700;
+}
+
+.details .secondary {
+  font-size: 1.6rem;
+  color: hsl(176, 50%, 47%);
+  font-weight: 500;
+}
+
+.stat p {
+  font-size: 3rem;
+}
+
+.divider-full {
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.modal-product-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-product-actions > * + * {
+  margin-top: 2.4rem;
+}
+
+.modal-product-actions header p {
+  font-size: 1.8rem;
+  font-weight: 500;
+}
+
+.input-and-button {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-container .dollar {
+  font-size: 2rem;
+  font-weight: 700;
+  color: lightgray;
+  position: absolute;
+  left: 3rem;
+}
+
+.pledge-input {
+  width: 120px;
+  padding: 1.6rem 1.6rem 1.6rem 5rem;
+  border: 3px solid lightgray;
+  border-radius: 3rem;
+  outline: none;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.pledge-input:focus {
+  border: 3px solid black;
+}
+
+/* Very small screens */
+@media screen and (max-width: 411px) {
+  .input-and-button {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .divider-full {
+    height: 2px;
+    width: 100%;
+  }
+}

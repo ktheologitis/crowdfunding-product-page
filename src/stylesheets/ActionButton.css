@@ -7,3 +7,9 @@
   border: none;
   border-radius: 3rem;
 }
+
+@media screen and (max-width: 768) {
+  .action-button {
+    width: 100%;
+  }
+}

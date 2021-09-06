@@ -1,11 +1,24 @@
 import ActionButton from "./ActionButton";
+import { useWindowSize } from "../custom_hooks";
 
 import bookmarkIcon from "../images/icon-bookmark.svg";
+import projectLogo from "../images/logo-mastercraft.svg";
 
 const ProjectIntro = () => {
+  const width = useWindowSize();
+
+  const bookmarkMobile = <img className="bookmark" src={bookmarkIcon} alt="bookmark icon" />;
+  const bookmarkDesktop = (
+    <div className="bookmark-desktop">
+      {bookmarkMobile}
+      <button className="action-button">Bookmark</button>
+    </div>
+  );
+
   return (
-    <section className="project-intro-container">
+    <section className="content-section project-intro">
       <header>
+        <img className="mastercraft-logo" src={projectLogo} alt="logo mastercraft" />
         <h1>Mastercraft Bamboo Monitor Riser</h1>
         <p>A beautifully handcrafted monitor stand to reduce neck and eye strain.</p>
         <div className="project-intro-actions">
@@ -15,7 +28,7 @@ const ProjectIntro = () => {
               console.log("clicked button");
             }}
           />
-          <img className="bookmark" src={bookmarkIcon} alt="bookmark icon" />
+          {width < 768 ? bookmarkMobile : bookmarkDesktop}
         </div>
       </header>
     </section>

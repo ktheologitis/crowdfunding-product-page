@@ -31,10 +31,13 @@ const Header = () => {
   return (
     <>
       <header className="app-header">
-        <picture className="header-img">
-          <source media="(min-width: 768px)" srcSet={desktopHeaderImage} />
-          <img src={mobileHeaderImage} alt="header pic" />
-        </picture>
+        <div className="header-image">
+          <div className="image-overlay" />
+          <picture>
+            <source media="(min-width: 768px)" srcSet={desktopHeaderImage} />
+            <img width={width} src={mobileHeaderImage} alt="header pic" />
+          </picture>
+        </div>
         <img className="logo" src={logo} alt="logo" />
         {width < 768 ? burgerIconButton : navigationList}
       </header>

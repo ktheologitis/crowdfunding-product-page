@@ -1,0 +1,13 @@
+.project-information {
+  padding: 4rem 2.4rem;
+}
+
+.project-information > h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.project-information > h1,
+.project-information > p {
+  margin-bottom: 3rem;
+}

@@ -1,0 +1,53 @@
+.project-intro {
+  text-align: center;
+}
+
+.project-intro h1 {
+  font-size: 2.4rem;
+}
+
+.project-intro h1,
+.project-intro p,
+.project-intro-actions {
+  padding: 0 2rem 2rem 2rem;
+}
+
+.project-intro-actions {
+  padding-bottom: 4rem;
+}
+
+.mastercraft-logo {
+  position: relative;
+  transform: translateY(-50%);
+}
+
+.project-intro-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  .project-intro-actions {
+    justify-content: space-between;
+  }
+
+  .bookmark-desktop {
+    display: flex;
+    align-items: center;
+  }
+
+  .bookmark-desktop img {
+    position: relative;
+    transform: translateX(90%);
+  }
+
+  .bookmark-desktop button {
+    background-color: whitesmoke;
+    color: hsl(0, 0%, 48%);
+    padding-left: 6.5rem;
+    padding-top: 1.8rem;
+    padding-bottom: 1.8rem;
+  }
+}
