@@ -9,11 +9,9 @@ import { useState } from "react";
 
 const ProductSelection = ({
   data,
-  selectedProduct,
   handleModal,
 }: {
   data: ProductType;
-  selectedProduct: string;
   handleModal: (status: "open" | "close") => void;
 }) => {
   const [pledgeAmount, setPledgeAmount] = useState("");

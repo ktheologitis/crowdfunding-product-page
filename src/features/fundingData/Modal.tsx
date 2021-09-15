@@ -40,7 +40,6 @@ const Modal = ({
             <div id={id} className="single-product-selection">
               <ProductSelection
                 data={products[id]}
-                selectedProduct={id}
                 handleModal={handleModal}
               />
             </div>
