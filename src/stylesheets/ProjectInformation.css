@@ -11,3 +11,7 @@
 .project-information > p {
   margin-bottom: 3rem;
 }
+
+.project-information > .single-product + .single-product {
+  margin-top: 2.4rem;
+}

@@ -1,22 +1,33 @@
 import { useState } from "react";
+import { Provider } from "react-redux";
+import { store } from "./app/store";
 import Header from "./components/Header";
-import MobileMenu from "./components/MobileMenu";
-import Modal from "./components/Modal";
-import ProjectInformation from "./components/ProjectInformation";
+import ProjectInformation from "./features/fundingData/ProjectInformation";
 import ProjectIntro from "./components/ProjectIntro";
-import SelectionCompleted from "./components/SelectionCompleted";
-import Statistics from "./components/Statistics";
+import Modal from "./features/fundingData/Modal";
+import Statistics from "./features/fundingData/Statistics";
 
 function App() {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModal = (action: "open" | "close") => {
+    if (action === "open") {
+      setModalOpen(true);
+      return;
+    }
+    setModalOpen(false);
+  };
+
   return (
-    <>
+    <Provider store={store}>
       <Header />
       <div className="content">
-        <ProjectIntro />
+        <ProjectIntro handleModal={handleModal} />
         <Statistics />
-        <ProjectInformation />
+        <ProjectInformation handleModal={handleModal} />
       </div>
-    </>
+      {modalOpen && <Modal handleModal={handleModal} />}
+    </Provider>
   );
 }
 

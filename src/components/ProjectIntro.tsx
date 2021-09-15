@@ -4,7 +4,7 @@ import { useWindowSize } from "../custom_hooks";
 import bookmarkIcon from "../images/icon-bookmark.svg";
 import projectLogo from "../images/logo-mastercraft.svg";
 
-const ProjectIntro = () => {
+const ProjectIntro = ({ handleModal }: { handleModal: (action: "open" | "close") => void }) => {
   const width = useWindowSize();
 
   const bookmarkMobile = <img className="bookmark" src={bookmarkIcon} alt="bookmark icon" />;
@@ -25,7 +25,7 @@ const ProjectIntro = () => {
           <ActionButton
             label="Back this project"
             handleClick={() => {
-              console.log("clicked button");
+              handleModal("open");
             }}
           />
           {width < 768 ? bookmarkMobile : bookmarkDesktop}
