@@ -1,15 +1,13 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import {
   selectBackedAmount,
   selectBackersCount,
-  selectSelectedProduct,
 } from "./fundingDataSlice";
 
 const Statistics = () => {
   const backedAmount = useSelector(selectBackedAmount);
   const backers = useSelector(selectBackersCount);
-  const selectedProduct = useSelector(selectSelectedProduct);
 
   const statisticsElement = useRef<HTMLDivElement>(null);
   const numbersElement = useRef<HTMLDivElement>(null);
@@ -19,7 +17,7 @@ const Statistics = () => {
   const progressBarWidth = (backedAmount / 100000) * 100;
 
   useEffect(() => {
-    if (backgroundBarElement.current && selectedProduct !== "none") {
+    if (backgroundBarElement.current) {
       statisticsElement.current!.scrollIntoView({
         behavior: "smooth",
       });
@@ -44,7 +42,7 @@ const Statistics = () => {
         { duration: 300, delay: 500, fill: "both" }
       );
     }
-  }, [backedAmount, backers, selectedProduct]);
+  }, [backedAmount, backers]);
 
   return (
     <section
