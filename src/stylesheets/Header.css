@@ -32,6 +32,15 @@
   font-weight: 500;
 }
 
+.navigation-list li {
+  transition: 0.3s;
+}
+
+.navigation-list li:hover {
+  cursor: pointer;
+  color: hsl(176, 50%, 47%);
+}
+
 .logo {
   left: 0rem;
 }

@@ -2,6 +2,22 @@
   background-color: white;
   width: 100%;
   align-self: center;
+  transition: 0.5s;
+}
+
+.modal-product.active {
+  border-color: hsl(176, 50%, 47%);
+}
+
+.modal-product.disabled {
+  border-color: lightgrey;
+  opacity: 0.6;
+}
+
+.product-selection-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
 }
 
 .modal-product label {
@@ -10,7 +26,15 @@
 }
 
 .radio-input {
-  display: none;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.radio-input:hover {
+  cursor: pointer;
 }
 
 .round-radio {
@@ -38,10 +62,47 @@
   transform: scale(1);
 }
 
+.product-selection-actions {
+  animation: expand 0.5s;
+  transform-origin: top;
+}
+
+@keyframes expand {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.details:hover {
+  cursor: pointer;
+}
+
 .details .main {
   font-size: 1.6rem;
   color: black;
   font-weight: 700;
+  transition: color 0.3s;
+}
+
+.details.disabled {
+  pointer-events: none;
+}
+
+.details:hover .main {
+  color: hsl(176, 50%, 47%);
+}
+
+.details.disabled:hover .main {
+  color: black;
+}
+
+.modal-product.active .details .main {
+  color: hsl(176, 50%, 47%);
 }
 
 .details .secondary {
@@ -87,22 +148,41 @@
   align-items: center;
 }
 
-.input-container .dollar {
+.input-container .dollar,
+.input-container.invalid .dollar {
   font-size: 2rem;
   font-weight: 700;
   color: lightgray;
   position: absolute;
   left: 3rem;
+  z-index: 1;
+}
+
+.input-container.invalid .pledge-input,
+.input-container.invalid .pledge-input:focus {
+  border-color: crimson;
+}
+
+.input-container.invalid::after {
+  content: "Please provide a number.";
+  position: absolute;
+  display: block;
+  width: 100%;
+  font-size: 1.3rem;
+  bottom: -1.4rem;
+  left: 1rem;
+  color: crimson;
 }
 
 .pledge-input {
-  width: 120px;
+  width: 150px;
   padding: 1.6rem 1.6rem 1.6rem 5rem;
   border: 3px solid lightgray;
   border-radius: 3rem;
   outline: none;
   font-weight: 700;
   font-size: 2rem;
+  position: relative;
 }
 
 .pledge-input:focus {
@@ -121,5 +201,15 @@
   .divider-full {
     height: 2px;
     width: 100%;
+  }
+
+  .product-selection-header {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .details {
+    display: flex;
+    gap: 1.5rem;
   }
 }

@@ -1,15 +1,27 @@
 .action-button {
-  padding: 2rem 4rem;
+  padding: 2rem 3rem;
   font-size: 1.6rem;
-  font-weight: 700;
+  font-weight: 400;
   color: white;
   background-color: hsl(176, 50%, 47%);
   border: none;
   border-radius: 3rem;
+  transition: 0.2s;
+}
+
+.action-button:hover {
+  cursor: pointer;
+  background-color: hsl(176, 72%, 28%);
+}
+
+.action-button.disabled:hover {
+  cursor: auto;
+  background-color: hsl(176, 50%, 47%);
 }
 
 @media screen and (max-width: 768) {
   .action-button {
     width: 100%;
+    padding: 2rem 4rem;
   }
 }

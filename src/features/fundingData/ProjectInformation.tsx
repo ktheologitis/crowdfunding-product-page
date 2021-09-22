@@ -32,7 +32,7 @@ const ProjectInformation = ({
 
       {productIds.map((id) => {
         return (
-          <div id={id} className="single-product">
+          <div key={"id-" + id} className="single-product">
             <Product data={products[id]} handleModal={handleModal} />
           </div>
         );

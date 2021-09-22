@@ -1,3 +1,4 @@
+import React from "react";
 import { useWindowSize } from "../custom_hooks";
 import mobileHeaderImage from "../images/image-hero-mobile.jpg";
 import desktopHeaderImage from "../images/image-hero-desktop.jpg";
@@ -34,8 +35,15 @@ const Header = () => {
         <div className="header-image">
           <div className="image-overlay" />
           <picture>
-            <source media="(min-width: 768px)" srcSet={desktopHeaderImage} />
-            <img width={width} src={mobileHeaderImage} alt="header pic" />
+            <source
+              media="(min-width: 768px)"
+              srcSet={desktopHeaderImage}
+            />
+            <img
+              width={width}
+              src={mobileHeaderImage}
+              alt="header pic"
+            />
           </picture>
         </div>
         <img className="logo" src={logo} alt="logo" />
@@ -45,4 +53,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default React.memo(Header);

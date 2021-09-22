@@ -1,5 +1,8 @@
-import { useDispatch } from "react-redux";
-import { productSelected } from "../fundingData/fundingDataSlice";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  productSelected,
+  selectProductStock,
+} from "../fundingData/fundingDataSlice";
 import type { ProductType } from "../fundingData/fundingDataSlice";
 
 const Product = ({
@@ -11,23 +14,28 @@ const Product = ({
 }) => {
   const dispatch = useDispatch();
 
+  const productStock = useSelector(selectProductStock(data.id));
+
   return (
-    <div className="product">
+    <div
+      className={productStock === 0 ? "product disabled" : "product"}
+    >
       <header className="product-header">
         <h2>{data.name}</h2>
         <p>Pledge {data.limit.toString()} or more</p>
       </header>
-      <p>
-        You get an ergonomic stand made of natural bamboo. You've
-        helped us launch our promotional campaign, and you’ll be added
-        to a special Backer member list.
-      </p>
+      <p>{data.description}</p>
       <div className="stat-and-button">
         <div className="stat">
           <p>{data.stock}</p> <span>left</span>
         </div>
         <button
-          className="action-button"
+          className={
+            productStock === 0
+              ? "action-button disabled"
+              : "action-button"
+          }
+          disabled={productStock === 0}
           onClick={() => {
             handleModal("open");
             dispatch(productSelected(data.id));

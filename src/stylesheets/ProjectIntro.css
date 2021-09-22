@@ -28,6 +28,18 @@
   gap: 1rem;
 }
 
+.bookmark:hover {
+  cursor: pointer;
+}
+
+.bookmark.active circle {
+  fill: hsl(176, 50%, 47%);
+}
+
+.bookmark.active path {
+  fill: whitesmoke;
+}
+
 @media screen and (min-width: 768px) {
   .project-intro-actions {
     justify-content: space-between;
@@ -38,16 +50,40 @@
     align-items: center;
   }
 
-  .bookmark-desktop img {
+  .bookmark-desktop svg {
     position: relative;
     transform: translateX(90%);
   }
 
-  .bookmark-desktop button {
+  .bookmark-desktop svg:hover {
+    cursor: pointer;
+  }
+
+  .bookmark-desktop .action-button {
     background-color: whitesmoke;
     color: hsl(0, 0%, 48%);
+    font-weight: 700;
     padding-left: 6.5rem;
     padding-top: 1.8rem;
     padding-bottom: 1.8rem;
+    transition: none;
+  }
+
+  .bookmark-desktop .action-button:hover {
+    cursor: pointer;
+    background-color: whitesmoke;
+  }
+
+  .bookmark-desktop.active .action-button {
+    color: hsl(176, 50%, 47%);
+    font-weight: 700;
+  }
+
+  .bookmark-desktop.active .bookmark circle {
+    fill: hsl(176, 50%, 47%);
+  }
+
+  .bookmark-desktop.active .bookmark path {
+    fill: whitesmoke;
   }
 }

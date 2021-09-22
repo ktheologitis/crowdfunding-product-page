@@ -10,14 +10,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  font-size: 2rem;
 }
 
 .single-stat {
   padding-bottom: 2.4rem;
-}
-
-.single-stat h1 {
-  font-size: 4rem;
 }
 
 .divider {
@@ -37,6 +34,7 @@
 }
 
 .progress {
+  transform-origin: left;
   position: absolute;
   top: 0;
   left: 0;

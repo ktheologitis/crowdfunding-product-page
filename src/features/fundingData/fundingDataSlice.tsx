@@ -10,7 +10,7 @@ export type ProductType = {
 };
 
 interface FundingDataState {
-  total: number;
+  backed: number;
   backers: number;
   productIds: string[];
   products: { [key: string]: ProductType };
@@ -18,33 +18,36 @@ interface FundingDataState {
 }
 
 interface PledgeAddedAction {
-  productId: string;
+  productId?: string;
   pledgeAmount: number;
 }
 
 const initialState: FundingDataState = {
-  total: 24500,
+  backed: 24500,
   backers: 5007,
   productIds: ["bamboo", "blackEdition", "mahoganySpecial"],
   products: {
     bamboo: {
       id: "bamboo",
       name: "Bamboo Stand",
-      description: "",
+      description:
+        "You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and you’ll be added to a special Backer member list.",
       limit: 25,
       stock: 101,
     },
     blackEdition: {
       id: "blackEdition",
       name: "Black Edition Stand",
-      description: "",
+      description:
+        "You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
       limit: 75,
       stock: 64,
     },
     mahoganySpecial: {
       id: "mahoganySpecial",
       name: "Mahogany Special Edition",
-      description: "",
+      description:
+        "You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added to our Backer member list. Shipping is included.",
       limit: 200,
       stock: 5,
     },
@@ -60,12 +63,13 @@ export const fundingDataSlice = createSlice({
       state,
       action: PayloadAction<PledgeAddedAction>
     ) => {
-      state.total += action.payload.pledgeAmount;
-      state.backers += 1;
-      if (state.products[action.payload.productId].stock > 0) {
-        state.products[action.payload.productId].stock -= 1;
+      if (action.payload.productId) {
+        state.backed += action.payload.pledgeAmount;
+        if (state.products[action.payload.productId].stock > 0) {
+          state.products[action.payload.productId].stock -= 1;
+        }
       }
-      resetSelection();
+      state.backers += 1;
     },
     productSelected: (state, action: PayloadAction<string>) => {
       let selectedProductId = action.payload;
@@ -82,6 +86,7 @@ export const fundingDataSliceReducer = fundingDataSlice.reducer;
 export const { pledgeAdded, productSelected, resetSelection } =
   fundingDataSlice.actions;
 
+// Export Selectors
 export const selectAllProducts = (state: RootState) =>
   state.fundingData.products;
 
@@ -95,8 +100,12 @@ export const selectProductById =
 export const selectSelectedProduct = (state: RootState) =>
   state.fundingData.selected;
 
-export const selectTotalAmount = (state: RootState) =>
-  state.fundingData.total;
+export const selectBackedAmount = (state: RootState) =>
+  state.fundingData.backed;
 
 export const selectBackersCount = (state: RootState) =>
   state.fundingData.backers;
+
+export const selectProductStock =
+  (productId: string) => (state: RootState) =>
+    state.fundingData.products[productId].stock;

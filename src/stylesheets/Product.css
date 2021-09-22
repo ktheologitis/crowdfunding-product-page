@@ -4,6 +4,10 @@
   border-radius: 1.5rem;
 }
 
+.product.disabled {
+  opacity: 0.6;
+}
+
 .product > * + * {
   margin-top: 2.4rem;
 }

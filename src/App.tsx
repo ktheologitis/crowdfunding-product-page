@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import Header from "./components/Header";
@@ -10,13 +10,13 @@ import Statistics from "./features/fundingData/Statistics";
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const handleModal = (action: "open" | "close") => {
+  const handleModal = useCallback((action: "open" | "close") => {
     if (action === "open") {
       setModalOpen(true);
       return;
     }
     setModalOpen(false);
-  };
+  }, []);
 
   return (
     <Provider store={store}>
@@ -26,7 +26,9 @@ function App() {
         <Statistics />
         <ProjectInformation handleModal={handleModal} />
       </div>
-      {modalOpen && <Modal handleModal={handleModal} />}
+      {modalOpen && (
+        <Modal open={modalOpen} handleModal={handleModal} />
+      )}
     </Provider>
   );
 }
