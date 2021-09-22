@@ -64,6 +64,9 @@ export const fundingDataSlice = createSlice({
       action: PayloadAction<PledgeAddedAction>
     ) => {
       if (action.payload.productId) {
+        console.log(
+          "New pledge amount: " + action.payload.pledgeAmount
+        );
         state.backed += action.payload.pledgeAmount;
         if (state.products[action.payload.productId].stock > 0) {
           state.products[action.payload.productId].stock -= 1;

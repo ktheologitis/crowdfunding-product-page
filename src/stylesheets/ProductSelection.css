@@ -158,13 +158,12 @@
   z-index: 1;
 }
 
-.input-container.invalid .pledge-input,
-.input-container.invalid .pledge-input:focus {
+.input-container.invalid .pledge-input {
   border-color: crimson;
 }
 
 .input-container.invalid::after {
-  content: "Please provide a number.";
+  content: "Provide a valid pledge.";
   position: absolute;
   display: block;
   width: 100%;
@@ -177,7 +176,7 @@
 .pledge-input {
   width: 150px;
   padding: 1.6rem 1.6rem 1.6rem 5rem;
-  border: 3px solid lightgray;
+  border: 1px solid lightgray;
   border-radius: 3rem;
   outline: none;
   font-weight: 700;
@@ -186,7 +185,11 @@
 }
 
 .pledge-input:focus {
-  border: 3px solid black;
+  border: 1px solid black;
+}
+
+.pledge-input::placeholder {
+  color: lightgray;
 }
 
 /* Very small screens */

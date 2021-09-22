@@ -6,10 +6,10 @@ import {
   selectProductStock,
   productSelected,
 } from "./fundingDataSlice";
+import type { Pledge } from "./Modal";
 import type { ProductType } from "./fundingDataSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { Pledge } from "./Modal";
 
 const ProductSelection = ({
   data,
@@ -20,22 +20,39 @@ const ProductSelection = ({
   handleSelectedProductScrollToView: (childTopOffset: number) => void;
   handleNewPledgeAdded: (pledge: Pledge) => void;
 }) => {
-  const productElement = useRef<HTMLDivElement>(null);
   const [pledgeAmount, setPledgeAmount] = useState("");
-
+  const [inputContainerClass, setInputContainerClass] =
+    useState("input-container");
+  const productElement = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
   const currentlySelectedProduct = useSelector(selectSelectedProduct);
   const productStock = useSelector(selectProductStock(data.id));
 
   const isNumber = (input: string) => {
+    console.log("Is number check: " + Number(input));
     if (isNaN(Number(input))) return false;
     return true;
   };
 
-  const inputContainerClass = classNames({
-    "input-container": true,
-    invalid: isNumber(pledgeAmount) === false,
+  const handleOnContinue = () => {
+    if (
+      isNumber(pledgeAmount) &&
+      Number(pledgeAmount) >= data.limit
+    ) {
+      handleNewPledgeAdded({
+        productId: data.id,
+        amount: Number(pledgeAmount),
+      });
+    } else {
+      setInputContainerClass("input-container invalid");
+    }
+  };
+
+  const modalProductClass = classNames({
+    "modal-product product": true,
+    active: currentlySelectedProduct === data.id,
+    disabled: productStock === 0,
   });
 
   const productSelectionActions = (
@@ -53,6 +70,7 @@ const ProductSelection = ({
               type="text"
               name="pledge"
               id="pledge"
+              placeholder="0.00"
               disabled={productStock === 0}
               value={pledgeAmount}
               onChange={(e) => {
@@ -64,14 +82,7 @@ const ProductSelection = ({
             <ActionButton
               label="Continue"
               disabled={productStock === 0}
-              handleClick={() => {
-                if (isNumber(pledgeAmount)) {
-                  handleNewPledgeAdded({
-                    productId: data.id,
-                    amount: parseFloat(pledgeAmount),
-                  });
-                }
-              }}
+              handleClick={() => handleOnContinue()}
             />
           </div>
         </div>
@@ -88,12 +99,6 @@ const ProductSelection = ({
       }, 500);
     }
   }, []);
-
-  const modalProductClass = classNames({
-    "modal-product product": true,
-    active: currentlySelectedProduct === data.id,
-    disabled: productStock === 0,
-  });
 
   return (
     <div

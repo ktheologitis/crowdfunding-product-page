@@ -12,6 +12,7 @@
 }
 
 .main-modal {
+  margin: auto;
   position: fixed;
   width: 90%;
   height: 80vh;
@@ -67,7 +68,6 @@
 
 .new-pledge-complete-message {
   width: 90%;
-  height: 70vh;
   position: fixed;
   top: 15vh;
   border-radius: 1rem;
