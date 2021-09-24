@@ -1,11 +1,7 @@
 import { useEffect, useRef } from "react";
 import classNames from "classnames";
 import ActionButton from "../../components/ActionButton";
-import {
-  selectSelectedProduct,
-  selectProductStock,
-  productSelected,
-} from "./fundingDataSlice";
+import { selectSelectedProduct, selectProductStock, productSelected } from "./fundingDataSlice";
 import type { Pledge } from "./Modal";
 import type { ProductType } from "./fundingDataSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,8 +17,7 @@ const ProductSelection = ({
   handleNewPledgeAdded: (pledge: Pledge) => void;
 }) => {
   const [pledgeAmount, setPledgeAmount] = useState("");
-  const [inputContainerClass, setInputContainerClass] =
-    useState("input-container");
+  const [inputContainerClass, setInputContainerClass] = useState("input-container");
   const productElement = useRef<HTMLDivElement>(null);
   const dispatch = useDispatch();
 
@@ -36,10 +31,7 @@ const ProductSelection = ({
   };
 
   const handleOnContinue = () => {
-    if (
-      isNumber(pledgeAmount) &&
-      Number(pledgeAmount) >= data.limit
-    ) {
+    if (isNumber(pledgeAmount) && Number(pledgeAmount) >= data.limit) {
       handleNewPledgeAdded({
         productId: data.id,
         amount: Number(pledgeAmount),
@@ -79,11 +71,7 @@ const ProductSelection = ({
             />
           </div>
           <div className="pledge-button">
-            <ActionButton
-              label="Continue"
-              disabled={productStock === 0}
-              handleClick={() => handleOnContinue()}
-            />
+            <ActionButton label="Continue" disabled={productStock === 0} handleClick={() => handleOnContinue()} />
           </div>
         </div>
       </div>
@@ -91,21 +79,14 @@ const ProductSelection = ({
   );
 
   useEffect(() => {
-    if (currentlySelectedProduct === data.id) {
-      setTimeout(() => {
-        const topOffset = productElement.current?.offsetTop; // pixels from top of page to selected productElement
-        if (topOffset && currentlySelectedProduct === data.id)
-          handleSelectedProductScrollToView(topOffset);
-      }, 500);
-    }
-  }, []);
+    setTimeout(() => {
+      const topOffset = productElement.current?.offsetTop; // pixels from top of page to selected productElement
+      if (topOffset && currentlySelectedProduct === data.id) handleSelectedProductScrollToView(topOffset);
+    }, 500);
+  }, [currentlySelectedProduct, data.id, handleSelectedProductScrollToView]);
 
   return (
-    <div
-      id={"id" + data.id}
-      className={modalProductClass}
-      ref={productElement}
-    >
+    <div id={"id" + data.id} className={modalProductClass} ref={productElement}>
       <header className="product-selection-header">
         <label htmlFor={data.id}>
           <input
@@ -122,18 +103,13 @@ const ProductSelection = ({
           />
           <div className="round-radio"></div>
           <div
-            className={
-              productStock === 0 ? "details disabled" : "details"
-            }
+            className={productStock === 0 ? "details disabled" : "details"}
             onClick={() => {
-              if (productStock !== 0)
-                dispatch(productSelected(data.id));
+              if (productStock !== 0) dispatch(productSelected(data.id));
             }}
           >
             <p className="main">{data.name}</p>
-            <p className="secondary">
-              Pledge {data.limit.toString()} or more
-            </p>
+            <p className="secondary">Pledge {data.limit.toString()} or more</p>
           </div>
         </label>
         <div className="stat">
@@ -141,8 +117,7 @@ const ProductSelection = ({
         </div>
       </header>
       <p>{data.description}</p>
-      {currentlySelectedProduct === data.id &&
-        productSelectionActions}
+      {currentlySelectedProduct === data.id && productSelectionActions}
     </div>
   );
 };

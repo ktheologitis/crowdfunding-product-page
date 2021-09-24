@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { Provider } from "react-redux";
 import { store } from "./app/store";
 import Header from "./components/Header";
